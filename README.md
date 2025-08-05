@@ -47,26 +47,25 @@ clinical-matcher process --output-dir results/ файл1.xlsx файл2.csv
 ```
 
 ### Для администраторов
+Запуск через Docker (рекомендуется)
 
-1. **Загрузка данных** (обязательно перед первым запуском):
 ```bash
-./scripts/download-datasets.sh
+# Из папки api
+docker build -t clinical-api .
+docker run -p 8002:8002 --env-file .env clinical-api
 ```
 
-2. **Запуск API сервера**:
+Локальный запуск
+
 ```bash
 cd api
 cp .env.example .env
 # Отредактируйте .env - добавьте OPENAI_API_KEY
 
-# Через Docker
-docker build -t clinical-api .
-docker run -p 8002:8002 --env-file .env clinical-api
-
-# Или локально
 pip install -r requirements.txt
 python main.py
 ```
+
 
 ## 📊 Формат данных
 
